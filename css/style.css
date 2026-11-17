@@ -159,9 +159,9 @@ main {
     position: relative;
     z-index: 2;
     background-color: rgb(224, 224, 224);
-    /* background-image: url(../assets/img/bg.jpg);
+    background-image: url(../assets/img/bg.jpg);
     background-repeat: no-repeat;
-    background-size: cover; */
+    background-size: cover;
     padding: 5%;
     display: flex;
     justify-content: space-between;
@@ -170,7 +170,6 @@ main {
 
     .c-wrapper {
         /* margin-top: 1%; */
-        margin-top: 30vh;
         width: 60%;
     }
 
