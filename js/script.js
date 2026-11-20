@@ -89,6 +89,28 @@ observer.observe(loadFont);//trigger
 
 //e:loadFont + worksExpansion
 
+const target = document.querySelector('#aboutVideo');
+
+let count = 0;
+
+const aboutObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+
+        if (entry.isIntersecting) {
+            count++;
+
+            if (count >= 3) {
+                target.classList.add('is-active');
+                observer.unobserve(target);
+            }
+        }
+    });
+}, {
+    threshold: 0.5
+});
+
+aboutObserver.observe(target);
+
 // ==============================
 // VRM MODEL
 // ==============================
