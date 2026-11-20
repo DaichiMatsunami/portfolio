@@ -6,54 +6,54 @@ import { VRMLoaderPlugin } from '@pixiv/three-vrm';
 
 // first view
 
-const svg = document.querySelector(".visualizer-svg");
+// const svg = document.querySelector(".visualizer-svg");
 
-// 各バーの幅
-const barWidths = Array.from({ length: 50 }, () =>
-    Math.floor(Math.random() * 10) + 1
-);
+// // 各バーの幅
+// const barWidths = Array.from({ length: 50 }, () =>
+//     Math.floor(Math.random() * 10) + 1
+// );
 
-const barHeight = 50;
-const minGap = 3;
-const maxGap = 10;
+// const barHeight = 50;
+// const minGap = 3;
+// const maxGap = 10;
 
-// SVGのバーを生成
-let x = 0;
+// // SVGのバーを生成
+// let x = 0;
 
-barWidths.forEach((width, index) => {
-    const rect = document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "rect"
-    );
+// barWidths.forEach((width, index) => {
+//     const rect = document.createElementNS(
+//         "http://www.w3.org/2000/svg",
+//         "rect"
+//     );
 
-    rect.setAttribute("x", x);
-    rect.setAttribute("width", width);
-    rect.setAttribute("height", barHeight);
+//     rect.setAttribute("x", x);
+//     rect.setAttribute("width", width);
+//     rect.setAttribute("height", barHeight);
 
-    rect.classList.add("bar");
+//     rect.classList.add("bar");
 
-    if (index === 1) {
-        rect.classList.add("active");
-    }
+//     if (index === 1) {
+//         rect.classList.add("active");
+//     }
 
-    svg.appendChild(rect);
+//     svg.appendChild(rect);
 
-    // 次のバーとの間隔をランダム生成
-    const gap = Math.random() * (maxGap - minGap) + minGap;
+//     // 次のバーとの間隔をランダム生成
+//     const gap = Math.random() * (maxGap - minGap) + minGap;
 
-    x += width + gap;
-});
+//     x += width + gap;
+// });
 
-//activeを切り替える
+// //activeを切り替える
 
-const bars = svg.querySelectorAll(".bar");
+// const bars = svg.querySelectorAll(".bar");
 
-bars.forEach((bar) => {
-    bar.addEventListener("mouseover", () => {
-        bars.forEach((b) => b.classList.remove("active"));
-        bar.classList.add("active");
-    });
-});
+// bars.forEach((bar) => {
+//     bar.addEventListener("mouseover", () => {
+//         bars.forEach((b) => b.classList.remove("active"));
+//         bar.classList.add("active");
+//     });
+// });
 
 // e:first view
 
@@ -68,22 +68,26 @@ const lenis = new Lenis({
 
 // e:lenis
 
-//loadFont
+//loadFont + worksExpansion
+
 const body = document.querySelector('body')
 const loadFont = document.getElementById('works');
+
+const works = document.querySelector('.works');
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
             body.classList.add("is-visible");
+            works.classList.add("is-visible");
             observer.unobserve(loadFont);
         }
     });
 });
 
-observer.observe(loadFont);
+observer.observe(loadFont);//trigger
 
-//e:loadfont
+//e:loadFont + worksExpansion
 
 // ==============================
 // VRM MODEL

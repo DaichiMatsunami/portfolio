@@ -14,9 +14,12 @@
 		},
 		{
 			"path": "../../../../Documents/jsbook"
+		},
+		{
+			"path": "../../../../Downloads/gsap-handson"
 		}
 	],
 	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "jsbook"
+		"liveServer.settings.multiRootWorkspaceName": "gsap-handson"
 	}
 }
