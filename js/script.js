@@ -1,6 +1,3 @@
-// import { gsap } from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 // first view
 
 // const svg = document.querySelector(".visualizer-svg");
@@ -86,15 +83,20 @@ observer.observe(loadFont);//trigger
 
 //e:loadFont + worksExpansion
 
-// gsap.registerPlugin(ScrollTrigger);
+//aboutExpansion
 
-// gsap.to('#aboutVideo', {
-//     scale: 1,
-//     ease: 'none',
-//     scrollTrigger: {
-//         trigger: '.about',
-//         start: 'top center',
-//         end: '+=200%',
-//         scrub: 1
-//     }
-// });
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to('#profileVideo', {
+    scale: 1,
+    x:0,
+    y:0,
+    ease: 'none',
+    scrollTrigger: {
+        trigger: '.profile',
+        start: 'top 1%',
+        end: 'top 1%',
+        scrub: true,
+        markers: true,
+    }
+});
