@@ -79,18 +79,39 @@ header {
     top: 0;
     width: 100%;
     height: auto;
+
+    .visualizer {
+        width: 80%;
+        display: flex;
+        align-items: start;
+        overflow: hidden;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        .guide {
+            margin-right: 1%;
+            h1 {
+                color: #fff;
+            }
+        }
+
+        .visualizer-svg {
+            width: 100%;
+        }
+
+        .bar {
+            fill: rgb(224, 224, 224);
+        }
+    }
 }
 
 .h-wrapper {
     min-height: 100dvh;
 
-    p,
-    h1 {
+    p {
         color: rgb(224, 224, 224);
-    }
-
-    .copy {
-        position: relative;
     }
 
     .name {
@@ -217,6 +238,7 @@ main {
 
     .c-wrapper-r {
         width: 55%;
+        margin-bottom: 20vh;
 
         .c-container {
             width: 100%;
@@ -257,7 +279,8 @@ main {
             width: 100%;
 
             p {
-                font-size: 2.95cqh;
+                font-size: var(--h3);
+                line-height: 1;
             }
         }
 
@@ -285,38 +308,6 @@ main {
         width: fit-content;
         right: 0;
         bottom: 0;
-    }
-
-    .visualizer {
-        width: 80%;
-        display: flex;
-        align-items: start;
-        overflow: hidden;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-
-        .guide {
-            display: block;
-            width: fit-content;
-            height: 100%;
-            background: rgb(224, 224, 224);
-
-            h2{
-                height: 100%;
-            }
-        }
-
-        .visualizer-svg {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-
-        .bar {
-            fill: rgb(224, 224, 224);
-        }
     }
 }
 
@@ -347,7 +338,8 @@ main {
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px),
+(max-aspect-ratio: 3/2) {
     .m-wrapper.works {
         flex-direction: column;
 
