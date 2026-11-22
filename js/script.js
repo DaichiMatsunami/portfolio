@@ -83,20 +83,4 @@ observer.observe(loadFont);//trigger
 
 //e:loadFont + worksExpansion
 
-//aboutExpansion
-
-gsap.registerPlugin(ScrollTrigger);
-
-gsap.to('#profileVideo', {
-    scale: 1,
-    x:0,
-    y:0,
-    ease: 'none',
-    scrollTrigger: {
-        trigger: '.profile',
-        start: 'top 1%',
-        end: 'top 1%',
-        scrub: true,
-        markers: true,
-    }
-});
+//Expansion

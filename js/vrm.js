@@ -26,8 +26,8 @@ if (container) {
         100
     );
 
-    camera.position.set(0, 1.6, 1.4);
-    camera.lookAt(0, 1.7, .6);
+    camera.position.set(1, 1, 3);
+    camera.lookAt(0, .9, .5);
 
     // Renderer
     const renderer = new THREE.WebGLRenderer({
