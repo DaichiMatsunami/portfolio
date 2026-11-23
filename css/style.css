@@ -327,32 +327,33 @@ main.is-visible {
     .c-wrapper-r {
         width: 55%;
         margin-bottom: 20vh;
+        perspective: 1000px;
 
         .c-container {
             width: 100%;
             padding: 3%;
             border: 1px solid rgba(255, 255, 255, .35);
             border-radius: var(--bRadius20);
-
+            perspective: 1000px;
             /* 乳白色のガラス */
             background: rgba(235, 238, 242, .52);
-
             /* 背景の光を適度に拡散 */
             backdrop-filter:
                 blur(28px) saturate(150%);
-
             -webkit-backdrop-filter:
                 blur(28px) saturate(150%);
-
             box-shadow:
                 inset 0 1px 2px rgba(255, 255, 255, .8),
                 inset 0 -1px 1px rgba(255, 255, 255, .25),
                 0 8px 30px rgba(0, 0, 0, .12);
-
+            transform-style: preserve-3d;
+            transform:
+                perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0);
             transition:
+                transform .3s ease,
                 background .35s ease,
-                border-color .35s ease,
-                transform .35s ease;
+                border-color .35s ease;
+            will-change: transform;
             margin-bottom: 3%;
             border-radius: var(--bRadius20);
             display: flex;
@@ -367,7 +368,6 @@ main.is-visible {
             border-radius: inherit;
             pointer-events: none;
             z-index: -1;
-
             background:
                 linear-gradient(135deg,
                     rgba(255, 255, 255, .55),
@@ -380,11 +380,16 @@ main.is-visible {
             z-index: 1;
         }
 
-        @media (hover: hover) {
+        @media (hover: hover) and (pointer: fine) {
             .c-container:hover {
-      background: rgba(245, 247, 250, .82);
-        border-color: rgba(255,255,255,.85);
-                transform: translateZ(30px);
+                /* JSから角度を操作 */
+                transition:
+                    transform .12s ease-out,
+                    background .35s ease,
+                    border-color .35s ease;
+
+                background: rgba(245, 247, 250, .82);
+                border-color: rgba(255, 255, 255, .85);
             }
         }
 
