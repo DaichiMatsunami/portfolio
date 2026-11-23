@@ -40,30 +40,23 @@ cards.forEach((card) => {
 
         const rect = card.getBoundingClientRect();
 
-        // カード内のマウス位置を -1 ～ 1 に正規化
         const x = (e.clientX - rect.left) / rect.width;
         const y = (e.clientY - rect.top) / rect.height;
 
-        // 回転角度
         const rotateY = (x - 0.5) * 12;
         const rotateX = (0.5 - y) * 12;
 
-        card.style.transform = `
-            perspective(1000px)
-            rotateX(${rotateX}deg)
-            rotateY(${rotateY}deg)
-            translateZ(20px)
-        `;
+        card.style.setProperty('--rotate-x', `${rotateX}deg`);
+        card.style.setProperty('--rotate-y', `${rotateY}deg`);
     });
 
     card.addEventListener('mouseleave', () => {
 
-        card.style.transform = `
-            perspective(1000px)
-            rotateX(0deg)
-            rotateY(0deg)
-            translateZ(20px)
-        `;
+        card.style.removeProperty('--rotate-x');
+        card.style.removeProperty('--rotate-y');
+
+        // インラインのtransformを完全解除
+        card.style.removeProperty('transform');
     });
 
 });

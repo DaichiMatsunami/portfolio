@@ -346,14 +346,13 @@ main.is-visible {
                 inset 0 1px 2px rgba(255, 255, 255, .8),
                 inset 0 -1px 1px rgba(255, 255, 255, .25),
                 0 8px 30px rgba(0, 0, 0, .12);
-            transform-style: preserve-3d;
-            transform:
-                perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0);
+            transform-style: flat;
+            transform: none;
+            will-change: auto;
             transition:
                 transform .3s ease,
                 background .35s ease,
                 border-color .35s ease;
-            will-change: transform;
             margin-bottom: 3%;
             border-radius: var(--bRadius20);
             display: flex;
@@ -382,6 +381,8 @@ main.is-visible {
 
         @media (hover: hover) and (pointer: fine) {
             .c-container:hover {
+                transform:
+                    perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
                 /* JSから角度を操作 */
                 transition:
                     transform .12s ease-out,
