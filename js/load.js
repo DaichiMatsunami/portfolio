@@ -1,13 +1,13 @@
-gsap.registerPlugin(ScrollTrigger);
-
 const svg = document.querySelector(".visualizer-svg");
+const loaderElement = document.querySelector("#loader");
+const main = document.querySelector('main');
 
 // 各バーの幅
 const barWidths = Array.from({ length: 50 }, () =>
     Math.floor(Math.random() * 10) + 1
 );
 
-const barHeight = 90;
+const barHeight = 70;
 const minGap = 3;
 const maxGap = 10;
 
@@ -45,13 +45,21 @@ gsap.set(bars, {
     transformOrigin: "center bottom"
 });
 
-// ページ読み込み時にアニメーション
-window.addEventListener("load", () => {
+// アニメーション
+
+// VRMのレンダリング完了イベントを監視
+window.addEventListener("vrm-rendered", () => {
 
     gsap.to(bars, {
         scaleY: 1,
         duration: 0.4,
         stagger: 0.025,
-        ease: "power2.out"
+        ease: "power2.out",
+        onComplete: () => {
+            // アニメーション完了後にローディング画面を閉じる
+            loaderElement.classList.add("is-loaded");
+            main.classList.add('is-visible');
+        }
     });
+
 });

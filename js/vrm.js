@@ -89,13 +89,18 @@ if (container) {
     const blinkDuration = 0.16;
 
     //VRM読み込み
+
     loader.load(
         `${import.meta.env.BASE_URL}models/model.vrm`,
-        (gltf) => {
+        async (gltf) => {
 
             currentVrm = gltf.userData.vrm;
 
+            currentVrm.scene.rotation.y = Math.PI;
+
             scene.add(currentVrm.scene);
+
+            await renderer.compileAsync(scene, camera);
 
             // 頭のボーンを取得
             head = currentVrm.humanoid.getNormalizedBoneNode('head');
@@ -124,19 +129,30 @@ if (container) {
                 currentVrm.lookAt.target = lookAtTarget;
             }
 
+            // 最初のレンダリング
+            renderer.render(scene, camera);
+
+            // 描画完了を通知
+            window.dispatchEvent(
+                new Event("vrm-rendered")
+            );
+
             console.log('VRM loaded!', currentVrm);
         },
 
+        // 読み込み進捗
         (progress) => {
-            console.log(
-                'Loading:',
-                (progress.loaded / progress.total * 100).toFixed(1),
-                '%'
-            );
+            if (progress.total > 0) {
+                const percent =
+                    (progress.loaded / progress.total) * 100;
+
+                console.log(`Loading: ${percent.toFixed(1)}%`);
+            }
         },
 
+        // エラー
         (error) => {
-            console.error('VRM loading error:', error);
+            console.error("VRM loading failed:", error);
         }
     );
 
