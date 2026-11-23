@@ -5,6 +5,7 @@
 html {
     font-size: 100%;
     scroll-behavior: smooth;
+    text-align: justify;
 }
 
 /* 1. Jost（英数字・記号用）の定義 */
@@ -60,77 +61,8 @@ p:has(span) {
     --textWht: rgb(244, 244, 244);
 }
 
-
-#body-index {
-    font-family: 'MyJost', sans-serif;
-    color: var(--textBlk);
-    text-align: justify;
-    line-height: 1.2;
-}
-
-#body-index.is-visible {
-    font-family: 'MyJost', 'MyNotoSansJP', sans-serif;
-}
-
 .bg-black {
     background-color: #222;
-}
-
-#header-index {
-    z-index: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-
-    .loader {
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        background: #222;
-        z-index: 99;
-    }
-
-    .loader.is-loaded {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        filter: blur(50px);
-        transition: .6s ease;
-        transform: scale(.8);
-    }
-
-    .visualizer {
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 80%;
-        display: flex;
-        align-items: start;
-        overflow: hidden;
-
-        .guide {
-            margin-right: 2%;
-
-            .loading-text {
-                color: #fff;
-                font-size: var(--p);
-
-                span {
-                    animation: .3s ease 0s blink infinite;
-                }
-            }
-        }
-    }
-
-    .visualizer-svg {
-        width: 100%;
-    }
-
-    .bar {
-        fill: rgb(224, 224, 224);
-    }
 }
 
 @keyframes blink {
@@ -143,89 +75,322 @@ p:has(span) {
     }
 }
 
-.h-wrapper.index {
-    min-height: 100dvh;
+#body-index.is-visible {
+    font-family: 'MyJost', 'MyNotoSansJP', sans-serif;
+}
 
-    p {
-        color: rgb(224, 224, 224);
+#body-index {
+    font-family: 'MyJost', sans-serif;
+    color: var(--textBlk);
+    line-height: 1.2;
+
+
+    #header-index {
+        z-index: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+
+        .loader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: #222;
+            z-index: 99;
+        }
+
+        .loader.is-loaded {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            filter: blur(50px);
+            transition: .6s ease;
+            transform: scale(.8);
+        }
+
+        .visualizer {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            display: flex;
+            align-items: start;
+            overflow: hidden;
+
+            .guide {
+                margin-right: 2%;
+
+                .loading-text {
+                    color: #fff;
+                    font-size: var(--p);
+
+                    span {
+                        animation: .3s ease 0s blink infinite;
+                    }
+                }
+            }
+        }
+
+        .visualizer-svg {
+            width: 100%;
+        }
+
+        .bar {
+            fill: rgb(224, 224, 224);
+        }
     }
 
-    .name {
+    .h-wrapper.index {
+        min-height: 100dvh;
+
+        p {
+            color: rgb(224, 224, 224);
+        }
+
+        .name {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            text-align: right;
+        }
+    }
+
+    #vrm-container {
         position: absolute;
-        top: 5%;
-        right: 5%;
-        text-align: right;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        pointer-events: none;
+    }
+
+    #vrm-container canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    #main-index {
+        position: fixed;
+        opacity: 0;
+        top: 100vh;
+        overflow: hidden;
+    }
+
+    #main-index.is-visible {
+        position: relative;
+        z-index: 1;
+        height: auto;
+        min-height: 100vh;
+        opacity: 1;
+        overflow: visible;
+    }
+
+    .m-wrapper.works.is-visible {
+        transform: scalex(1);
+        transition: .6s ease;
+    }
+
+    .m-wrapper.works::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+
+        background:
+            radial-gradient(circle at 20% 0%,
+                rgba(255, 255, 255, 0.55),
+                transparent 40%),
+            linear-gradient(120deg,
+                rgba(255, 255, 255, 0.2),
+                transparent 50%,
+                rgba(255, 255, 255, 0.12));
+    }
+
+    .m-wrapper.works::after {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        border-radius: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        pointer-events: none;
+    }
+
+    .m-wrapper.works {
+        position: relative;
+        z-index: 0;
+        backdrop-filter: blur(24px) saturate(180%) contrast(110%);
+        -webkit-backdrop-filter:
+            blur(24px) saturate(180%) contrast(110%);
+        box-shadow:
+            inset 0 1px 1px rgba(255, 255, 255, 0.65),
+            inset 0 -1px 1px rgba(255, 255, 255, 0.15),
+            0 12px 40px rgba(0, 0, 0, 0.15);
+        padding: 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        border-radius: var(--bRadius40);
+        transform: scalex(.9);
+
+        .c-wrapper-l {
+            position: sticky;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            top: 5%;
+            width: 40%;
+            height: 80vh;
+            z-index: 1;
+
+            .caption {
+                h2 {
+                    color: #fff;
+                }
+
+                p {
+                    margin-top: 3%;
+                    color: rgb(234, 234, 234);
+                }
+            }
+        }
+
+        .c-wrapper-r {
+            width: 55%;
+            margin-bottom: 20vh;
+            perspective: 1000px;
+
+            .c-container {
+                width: 100%;
+                padding: 3%;
+                border: 1px solid rgba(255, 255, 255, .35);
+                border-radius: var(--bRadius20);
+                perspective: 1000px;
+                /* 乳白色のガラス */
+                background: rgba(235, 238, 242, .52);
+                /* 背景の光を適度に拡散 */
+                backdrop-filter:
+                    blur(28px) saturate(150%);
+                -webkit-backdrop-filter:
+                    blur(28px) saturate(150%);
+                box-shadow:
+                    inset 0 1px 2px rgba(255, 255, 255, .8),
+                    inset 0 -1px 1px rgba(255, 255, 255, .25),
+                    0 8px 30px rgba(0, 0, 0, .12);
+                transform-style: flat;
+                transform: none;
+                will-change: auto;
+                transition:
+                    transform .3s ease,
+                    background .35s ease,
+                    border-color .35s ease;
+                margin-bottom: 3%;
+                border-radius: var(--bRadius20);
+                display: flex;
+                align-items: start;
+                justify-content: space-between;
+            }
+
+            .c-container::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: inherit;
+                pointer-events: none;
+                z-index: -1;
+                background:
+                    linear-gradient(135deg,
+                        rgba(255, 255, 255, .55),
+                        transparent 45%,
+                        rgba(255, 255, 255, .08));
+            }
+
+            .c-container>* {
+                position: relative;
+                z-index: 1;
+            }
+
+            @media (hover: hover) and (pointer: fine) {
+                .c-container:hover {
+                    transform:
+                        perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
+                    /* JSから角度を操作 */
+                    transition:
+                        transform .12s ease-out,
+                        background .35s ease,
+                        border-color .35s ease;
+
+                    background: rgba(245, 247, 250, .82);
+                    border-color: rgba(255, 255, 255, .85);
+                }
+            }
+
+            .c-marker {
+                display: flex;
+                width: var(--p);
+                margin-right: 2%;
+                height: var(--h3);
+                align-items: center;
+
+                svg {
+                    aspect-ratio: 1/1;
+                }
+            }
+
+            .c-caption {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+                width: 95%;
+                line-height: 1.4;
+            }
+
+            .c-title {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+
+                p {
+                    font-size: var(--h3);
+                    line-height: 1;
+                }
+            }
+
+            .caption-box {
+                margin-top: 2%;
+                padding-top: 1%;
+                width: 100%;
+
+                p {
+                    color: #444;
+                }
+            }
+        }
+    }
+
+    .m-wrapper.profile {
+        position: relative;
+        height: 100dvh;
+        width: 100%;
+        color: white;
+        background-color: #222;
+
+        .c-container {
+            position: absolute;
+            width: fit-content;
+            right: 0;
+            bottom: 0;
+        }
     }
 }
 
-#vrm-container {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 3;
-    pointer-events: none;
-}
-
-#vrm-container canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-#main-index {
-    position: fixed;
-    opacity: 0;
-    top: 100vh;
-    overflow: hidden;
-}
-
-#main-index.is-visible {
+.c-img {
     position: relative;
-    z-index: 1;
-    height: auto;
-    min-height: 100vh;
-    opacity: 1;
-    overflow: visible;
-}
-
-.m-wrapper.works.is-visible {
-    transform: scalex(1);
-    transition: .6s ease;
-}
-
-.m-wrapper.works::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    pointer-events: none;
-
-    background:
-        radial-gradient(circle at 20% 0%,
-            rgba(255, 255, 255, 0.55),
-            transparent 40%),
-        linear-gradient(120deg,
-            rgba(255, 255, 255, 0.2),
-            transparent 50%,
-            rgba(255, 255, 255, 0.12));
-}
-
-.m-wrapper.works::after {
-    content: "";
-    position: absolute;
-    inset: 1px;
-    border-radius: inherit;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    pointer-events: none;
-}
-
-.m-wrapper.works {
-    position: relative;
-    z-index: 0;
-    background-color: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.35),
-            rgba(255, 255, 255, 0.08));
+    width: 80%;
     backdrop-filter: blur(24px) saturate(180%) contrast(110%);
     -webkit-backdrop-filter:
         blur(24px) saturate(180%) contrast(110%);
@@ -233,202 +398,157 @@ p:has(span) {
         inset 0 1px 1px rgba(255, 255, 255, 0.65),
         inset 0 -1px 1px rgba(255, 255, 255, 0.15),
         0 12px 40px rgba(0, 0, 0, 0.15);
-    padding: 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
+    padding: 3%;
     border-radius: var(--bRadius40);
-    transform: scalex(.9);
 
-    .c-wrapper-l {
-        position: sticky;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        top: 5%;
-        width: 40%;
-        height: 80vh;
-        z-index: 1;
-
-        .caption {
-            h2 {
-                color: #fff;
-            }
-
-            p {
-                margin-top: 3%;
-                color: rgb(234, 234, 234);
-            }
-        }
-
-        .c-img {
-            position: relative;
-            width: 80%;
-            background-color: linear-gradient(135deg,
-                    rgba(255, 255, 255, 0.35),
-                    rgba(255, 255, 255, 0.08));
-            backdrop-filter: blur(24px) saturate(180%) contrast(110%);
-            -webkit-backdrop-filter:
-                blur(24px) saturate(180%) contrast(110%);
-            box-shadow:
-                inset 0 1px 1px rgba(255, 255, 255, 0.65),
-                inset 0 -1px 1px rgba(255, 255, 255, 0.15),
-                0 12px 40px rgba(0, 0, 0, 0.15);
-            padding: 3%;
-            border-radius: var(--bRadius40);
-
-            img {
-                width: 100%;
-                aspect-ratio: 1/1;
-                border-radius: var(--bRadius40);
-            }
-
-            .c-roll {
-                position: absolute;
-                bottom: 8%;
-                right: 8%;
-
-                .caption {
-                    background-color: #47d35e;
-                    padding: 4px 12px;
-                    border-radius: 100px;
-                    width: fit-content;
-                    margin: 0 0 5% auto;
-
-                    p {
-                        color: white;
-                    }
-                }
-            }
-        }
+    img {
+        width: 100%;
+        aspect-ratio: 1/1;
+        border-radius: var(--bRadius40);
     }
 
-    .c-wrapper-r {
-        width: 55%;
-        margin-bottom: 20vh;
-        perspective: 1000px;
+    .c-roll {
+        position: absolute;
+        bottom: 8%;
+        right: 8%;
 
-        .c-container {
-            width: 100%;
-            padding: 3%;
-            border: 1px solid rgba(255, 255, 255, .35);
-            border-radius: var(--bRadius20);
-            perspective: 1000px;
-            /* 乳白色のガラス */
-            background: rgba(235, 238, 242, .52);
-            /* 背景の光を適度に拡散 */
-            backdrop-filter:
-                blur(28px) saturate(150%);
-            -webkit-backdrop-filter:
-                blur(28px) saturate(150%);
-            box-shadow:
-                inset 0 1px 2px rgba(255, 255, 255, .8),
-                inset 0 -1px 1px rgba(255, 255, 255, .25),
-                0 8px 30px rgba(0, 0, 0, .12);
-            transform-style: flat;
-            transform: none;
-            will-change: auto;
-            transition:
-                transform .3s ease,
-                background .35s ease,
-                border-color .35s ease;
-            margin-bottom: 3%;
-            border-radius: var(--bRadius20);
-            display: flex;
-            align-items: start;
-            justify-content: space-between;
-        }
-
-        .c-container::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            pointer-events: none;
-            z-index: -1;
-            background:
-                linear-gradient(135deg,
-                    rgba(255, 255, 255, .55),
-                    transparent 45%,
-                    rgba(255, 255, 255, .08));
-        }
-
-        .c-container>* {
-            position: relative;
-            z-index: 1;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            .c-container:hover {
-                transform:
-                    perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
-                /* JSから角度を操作 */
-                transition:
-                    transform .12s ease-out,
-                    background .35s ease,
-                    border-color .35s ease;
-
-                background: rgba(245, 247, 250, .82);
-                border-color: rgba(255, 255, 255, .85);
-            }
-        }
-
-        .c-marker {
-            display: flex;
-            width: var(--p);
-            margin-right: 2%;
-            height: var(--h3);
-            align-items: center;
-
-            svg {
-                aspect-ratio: 1/1;
-            }
-        }
-
-        .c-caption {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            width: 95%;
-            line-height: 1.4;
-        }
-
-        .c-title {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
+        .caption {
+            background-color: rgb(58, 197, 81);
+            padding: 4px 12px;
+            border-radius: 100px;
+            width: fit-content;
+            margin: 0 0 5% auto;
 
             p {
-                font-size: var(--h3);
-                line-height: 1;
-            }
-        }
-
-        .caption-box {
-            margin-top: 2%;
-            padding-top: 1%;
-            width: 100%;
-
-            p {
-                color: #444;
+                color: white;
             }
         }
     }
 }
 
-.m-wrapper.profile {
-    position: relative;
-    height: 100dvh;
-    width: 100%;
-    color: white;
-    background-color: #222;
+#body-projects {
+    padding: 5%;
+    display: flex;
+    justify-content: space-between;
 
-    .c-container {
+    #header-projects {
+        position: sticky;
+        top: 5%;
+        width: 18%;
+        height: fit-content;
+    }
+
+    #menu-projects {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .li-container {
+            width: 47.5%;
+            margin-bottom: 5%;
+
+            img {
+                overflow: hidden;
+                object-fit: cover;
+                width: 100%;
+                aspect-ratio: 1/1;
+                border-radius: var(--bRadius40);
+            }
+
+            a {
+                aspect-ratio: 1/1;
+                display: block;
+                padding: 7%;
+                border-radius: var(--bRadius40);
+                background: linear-gradient(135deg,
+                        rgba(255, 255, 255, .55),
+                        transparent 0%,
+                        rgba(255, 255, 255, .08));
+
+                svg {
+                    width: 60%;
+                }
+            }
+
+            a:has(svg) {
+                background: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            a.active {
+                border-radius: 50%;
+
+                img {
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+
+    #main-projects {
+        color: var(--textWht);
+        position: relative;
+        width: 75%;
+        min-height: 100vh;
+        padding: 5%;
+        border-radius: var(--bRadius40);
+        backdrop-filter: blur(24px) saturate(180%) contrast(110%);
+        -webkit-backdrop-filter:
+            blur(24px) saturate(180%) contrast(110%);
+        box-shadow:
+            inset 0 1px 1px rgba(255, 255, 255, 0.65),
+            inset 0 -1px 1px rgba(255, 255, 255, 0.15),
+            0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    #main-projects::before {
+        content: "";
         position: absolute;
-        width: fit-content;
-        right: 0;
-        bottom: 0;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+
+        background:
+            radial-gradient(circle at 20% 0%,
+                rgba(255, 255, 255, 0.096),
+                transparent 40%),
+            linear-gradient(120deg,
+                rgba(255, 255, 255, 0.2),
+                transparent 50%,
+                rgba(255, 255, 255, 0.12));
+    }
+
+    #main-projects::after {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        border-radius: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        pointer-events: none;
+    }
+
+    #article-projects {
+        display: flex;
+        justify-content: space-between;
+
+        .c-wrapper-l {
+            width: 50%;
+            order: 0;
+        }
+
+        .c-wrapper-r {
+            width: 40%;
+            order: 1;
+            position: sticky;
+            top: 10%;
+            height: fit-content;
+
+            .c-img {
+                width: 100%;
+            }
+        }
     }
 }
 
