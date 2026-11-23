@@ -60,14 +60,15 @@ p:has(span) {
     --textWht: rgb(244, 244, 244);
 }
 
-body {
+
+#body-index {
     font-family: 'MyJost', sans-serif;
     color: var(--textBlk);
     text-align: justify;
     line-height: 1.2;
 }
 
-body.is-visible {
+#body-index.is-visible {
     font-family: 'MyJost', 'MyNotoSansJP', sans-serif;
 }
 
@@ -75,7 +76,7 @@ body.is-visible {
     background-color: #222;
 }
 
-header {
+#header-index {
     z-index: 0;
     position: fixed;
     top: 0;
@@ -142,7 +143,7 @@ header {
     }
 }
 
-.h-wrapper {
+.h-wrapper.index {
     min-height: 100dvh;
 
     p {
@@ -172,43 +173,21 @@ header {
     height: 100%;
 }
 
-main {
-    position: relative;
+#main-index {
+    position: fixed;
     opacity: 0;
-    height: 100vh;
-    top: 0;
+    top: 100vh;
     overflow: hidden;
 }
 
-main.is-visible {
+#main-index.is-visible {
+    position: relative;
     z-index: 1;
     height: auto;
-    top: 100vh;
     min-height: 100vh;
     opacity: 1;
     overflow: visible;
 }
-
-/* 
-.m-wrapper.works::before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(155, 152, 152, 0.589);
-    z-index: 1;
-    border-radius: 40px;
-    transform: scale(.95);
-}
-
-.m-wrapper.works.is-visible::before {
-    height: 0;
-    transition: 1s ease;
-    transition-delay: .3s;
-} */
 
 .m-wrapper.works.is-visible {
     transform: scalex(1);

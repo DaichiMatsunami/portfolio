@@ -1,6 +1,6 @@
 const svg = document.querySelector(".visualizer-svg");
-const loaderElement = document.querySelector("#loader");
-const main = document.querySelector('main');
+const loaderElement = document.getElementById("loader");
+const main = document.getElementById('main-index');
 
 // 各バーの幅
 const barWidths = Array.from({ length: 50 }, () =>

@@ -1,20 +1,8 @@
-// lenis
-
-const lenis = new Lenis({
-    autoRaf: true,
-    duration: 1.4,
-    smoothWheel: true,
-    anchors: true,
-});
-
-// e:lenis
-
 //loadFont + worksExpansion
 
-const body = document.querySelector('body')
+const body = document.getElementById('body-index')
 const loadFont = document.getElementById('worksTrigger');
-
-const works = document.querySelector('.works');
+const works = document.getElementById('works');
 
 const loadObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
