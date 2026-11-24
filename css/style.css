@@ -34,11 +34,13 @@ h1 {
 h2 {
     /* 48px */
     font-size: clamp(3rem, 2.636rem + 1.82vw, 4rem);
+    font-weight: normal;
 }
 
 h3 {
     /* 24px */
     font-size: clamp(1rem, 0.818rem + 0.91vw, 1.5rem);
+    font-weight: normal;
 }
 
 p {
@@ -55,8 +57,9 @@ p:has(span) {
     --h2: clamp(3rem, 2.636rem + 1.82vw, 4rem);
     --h3: clamp(1.5rem, 1.318rem + 0.91vw, 2rem);
     --p: clamp(0.75rem, 0.659rem + 0.45vw, 1rem);
-    --bRadius40: 40px;
-    --bRadius20: 20px;
+    --small: clamp(0.406rem, 0.296rem + 0.47vw, 0.75rem);
+    --bRadius40: 2vw;
+    --bRadius20: 1vw;
     --textBlk: #25272a;
     --textWht: rgb(244, 244, 244);
 }
@@ -186,10 +189,12 @@ p:has(span) {
         min-height: 100vh;
         opacity: 1;
         overflow: visible;
+        padding: 0 3%;
     }
 
     .m-wrapper.works.is-visible {
         transform: scalex(1);
+        filter: blur(0px);
         transition: .6s ease;
     }
 
@@ -222,6 +227,7 @@ p:has(span) {
     .m-wrapper.works {
         position: relative;
         z-index: 0;
+        filter: blur(10px);
         backdrop-filter: blur(24px) saturate(180%) contrast(110%);
         -webkit-backdrop-filter:
             blur(24px) saturate(180%) contrast(110%);
@@ -247,13 +253,16 @@ p:has(span) {
             z-index: 1;
 
             .caption {
+                margin-top: 5%;
+
                 h2 {
-                    color: #fff;
+                    color: white;
+                    font-weight: bold;
                 }
 
                 p {
                     margin-top: 3%;
-                    color: rgb(234, 234, 234);
+                    color: var(--textWht);
                 }
             }
         }
@@ -347,6 +356,10 @@ p:has(span) {
                 justify-content: space-between;
                 width: 95%;
                 line-height: 1.4;
+
+                h3 {
+                    font-weight: bold;
+                }
             }
 
             .c-title {
@@ -407,7 +420,7 @@ p:has(span) {
         border-radius: var(--bRadius40);
     }
 
-    .c-roll {
+    .c-role {
         position: absolute;
         bottom: 8%;
         right: 8%;
@@ -430,6 +443,7 @@ p:has(span) {
     padding: 5%;
     display: flex;
     justify-content: space-between;
+    font-family: 'MyJost', 'MyNotoSansJP', sans-serif;
 
     #header-projects {
         position: sticky;
@@ -533,6 +547,60 @@ p:has(span) {
         display: flex;
         justify-content: space-between;
 
+        h1 {
+            font-size: var(--p);
+        }
+
+        h2 {
+            font-size: var(--h3);
+            line-height: 1.2;
+            margin-bottom: 15%;
+        }
+
+        .accordion {
+            margin-top: 7.5%;
+            padding-bottom: 7.5%;
+            border-bottom: solid 1px rgba(255, 255, 255, 0.116);
+
+            .sub-title {
+                display: flex;
+                align-items: center;
+                height: var(--h3);
+
+                svg {
+                    height: 100%;
+                    aspect-ratio: 1/1;
+                    margin-right: 3%;
+                }
+
+                h3 {
+                    width: 90%;
+                }
+            }
+
+            .caption {
+                margin-top: 5%;
+            }
+
+            .accordion-img {
+                margin-top: 5%;
+                aspect-ratio: 2/1;
+                overflow: hidden;
+                border-radius: var(--bRadius40);
+                padding: 2%;
+                backdrop-filter: blur(24px) saturate(180%) contrast(110%);
+                -webkit-backdrop-filter:
+                    blur(24px) saturate(180%) contrast(110%);
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: var(--bRadius40);
+                }
+            }
+        }
+
         .c-wrapper-l {
             width: 50%;
             order: 0;
@@ -547,6 +615,25 @@ p:has(span) {
 
             .c-img {
                 width: 100%;
+                box-shadow:
+                    none
+            }
+
+            .title {
+                margin-top: 3%;
+                line-height: 1.5;
+                opacity: .7;
+                text-align: left;
+
+                h1{
+                    margin-bottom: .5%;
+                } 
+                p {
+                    font-size: var(--small);
+                    a{
+                        border-bottom: solid 1px #c4c4c48e;
+                    }
+                }
             }
         }
     }
