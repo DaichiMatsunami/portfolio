@@ -1,3 +1,7 @@
+import "./load.js";
+import "./vrm.js";
+import "./common.js";
+
 //loadFont + worksExpansion
 
 const body = document.getElementById('body-index')
