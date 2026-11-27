@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+
 const svg = document.querySelector(".visualizer-svg");
 const loaderElement = document.getElementById("loader");
 const main = document.getElementById('main-index');

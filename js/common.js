@@ -1,3 +1,4 @@
+import Lenis from "lenis";
 // lenis
 
 const lenis = new Lenis({
