@@ -6,7 +6,7 @@ import "./common.js";
 
 const body = document.getElementById('body-index')
 const loadFont = document.getElementById('worksTrigger');
-const works = document.getElementById('works');
+const works = document.getElementById('works-index');
 
 const loadObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

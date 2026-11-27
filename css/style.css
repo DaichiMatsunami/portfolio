@@ -56,31 +56,25 @@ html {
 h1 {
     font-size: clamp(0.938rem, 0.9rem + 0.2vw, 1rem);
     font-weight: normal;
-    text-transform: uppercase;
 }
 
 h2 {
     /* 48px */
     font-size: clamp(3rem, 2.636rem + 1.82vw, 4rem);
     font-weight: normal;
-    text-transform: uppercase;
+    text-transform: uppercase !important;
 }
 
 h3 {
     /* 24px */
     font-size: clamp(1rem, 0.818rem + 0.91vw, 1.5rem);
     font-weight: normal;
-    text-transform: uppercase;
+    text-transform: uppercase !important;
 }
 
 p {
     /* 16px 文章*/
     font-size: clamp(0.75rem, 0.659rem + 0.45vw, 1rem);
-}
-
-p:has(span) {
-    /* 12px */
-    font-size: clamp(0.406rem, 0.296rem + 0.47vw, 0.75rem);
 }
 
 :root {
@@ -164,29 +158,29 @@ p:has(span) {
                     }
                 }
             }
+
+            .visualizer-svg {
+                width: 100%;
+            }
+
+            .bar {
+                fill: rgb(224, 224, 224);
+            }
         }
 
-        .visualizer-svg {
-            width: 100%;
-        }
+        .h-wrapper {
+            min-height: 100dvh;
 
-        .bar {
-            fill: rgb(224, 224, 224);
-        }
-    }
+            p {
+                color: rgb(224, 224, 224);
+            }
 
-    .h-wrapper.index {
-        min-height: 100dvh;
-
-        p {
-            color: rgb(224, 224, 224);
-        }
-
-        .name {
-            position: absolute;
-            top: 5%;
-            right: 5%;
-            text-align: right;
+            .name {
+                position: absolute;
+                bottom: 10%;
+                right: 5%;
+                text-align: right;
+            }
         }
     }
 
@@ -223,7 +217,6 @@ p:has(span) {
     }
 
     .m-wrapper.works.is-visible {
-        filter: blur(0px);
         transition: .6s ease;
     }
 
@@ -256,7 +249,6 @@ p:has(span) {
     .m-wrapper.works {
         position: relative;
         z-index: 0;
-        filter: blur(10px);
         backdrop-filter: blur(24px) saturate(180%) contrast(110%);
         -webkit-backdrop-filter:
             blur(24px) saturate(180%) contrast(110%);
@@ -276,12 +268,12 @@ p:has(span) {
             flex-direction: column;
             justify-content: space-between;
             top: 5%;
-            width: 40%;
+            width: 35%;
             height: 80vh;
             z-index: 1;
 
             .caption {
-                margin-top: 5%;
+                margin-top: 15%;
 
                 h2 {
                     color: white;
@@ -431,7 +423,7 @@ p:has(span) {
 
 .c-img {
     position: relative;
-    width: 80%;
+    width: 90%;
     backdrop-filter: blur(24px) saturate(180%) contrast(110%);
     -webkit-backdrop-filter:
         blur(24px) saturate(180%) contrast(110%);
